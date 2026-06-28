@@ -1,10 +1,201 @@
-<html>
-  <head>
-    <title>My webpage</title>
-    <meta name="google-site-verification" content="SGY00QAfCYfHP2W9Wow9_mkF1HJHz7fyAH8eAASRilw" />
-    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
-  </head>
-  <body>
-    HEllo how are you
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEFC - Digital Services | Coming Soon</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --text-color: #f8fafc;
+            --accent-color: #38bdf8;
+            --secondary-color: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* Animated Background Graphic */
+        .background-graphic {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            filter: blur(80px);
+            opacity: 0.2;
+            border-radius: 50%;
+            top: 20%;
+            left: 30%;
+            animation: float 8s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+
+        .background-graphic-2 {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(45deg, #ec4899, #38bdf8);
+            filter: blur(80px);
+            opacity: 0.15;
+            border-radius: 50%;
+            bottom: 20%;
+            right: 30%;
+            animation: float 6s ease-in-out infinite alternate-reverse;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-30px) scale(1.1); }
+        }
+
+        /* Main Content Container */
+        .container {
+            text-align: center;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        /* Central Graphic Icon */
+        .icon-container {
+            margin-bottom: 2rem;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .icon-container svg {
+            width: 80px;
+            height: 80px;
+            fill: none;
+            stroke: var(--accent-color);
+            stroke-width: 1.5;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(56, 189, 248, 0)); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.5)); }
+        }
+
+        /* Heading and Hover Unravel Effect */
+        .heading {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .unravel-wrapper {
+            cursor: pointer;
+            display-inline: block;
+            position: relative;
+            color: var(--accent-color);
+            transition: color 0.3s ease;
+        }
+
+        /* The magic text container */
+        .unravel-text {
+            display: inline-block;
+            max-width: 110px; /* Fits 'SEFC' initially */
+            white-space: nowrap;
+            overflow: hidden;
+            transition: max-width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            vertical-align: bottom;
+        }
+
+        /* Target acronym letters specifically to make them pop initially if desired */
+        .unravel-text span.initial {
+            font-weight: 800;
+        }
+
+        /* On Hover: Expand the container to show full text */
+        .unravel-wrapper:hover .unravel-text {
+            max-width: 700px; /* Large enough to fit the full name */
+        }
+
+        .suffix {
+            color: var(--text-color);
+        }
+
+        /* Subtitle & Info */
+        .tagline {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        /* Status Badge */
+        .badge {
+            background-color: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .heading { font-size: 1.8rem; }
+            .tagline { font-size: 1rem; }
+            .unravel-text { max-width: 80px; }
+            .unravel-wrapper:hover .unravel-text { max-width: 450px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Graphics -->
+    <div class="background-graphic"></div>
+    <div class="background-graphic-2"></div>
+
+    <div class="container">
+        <!-- Modern Tech Graphic Icon -->
+        <div class="icon-container">
+            <svg viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9s2.015-9 4.5-9m0 0a9.004 9.004 0 018.716 6.747M12 3a9.004 9.004 0 00-8.716 6.747M10.25 9.75l1.25 1.25 3.25-3.25" />
+            </svg>
+        </div>
+
+        <div class="badge">Coming Soon</div>
+
+        <!-- The Interactive Unraveling Heading -->
+        <h1 class="heading">
+            <div class="unravel-wrapper">
+                <div class="unravel-text">
+                    <span class="initial">S</span>wati <span class="initial">E</span>ducation <span class="initial">F</span>inancial <span class="initial">C</span>onsultancy
+                </div>
+            </div>
+            <span class="suffix">- Digital Services</span>
+        </h1>
+
+        <p class="tagline">We are crafting a brand new digital experience. Stay tuned!</p>
+    </div>
+
+</body>
 </html>
