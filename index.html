@@ -32,7 +32,7 @@
             padding: 20px;
         }
 
-        /* Animated Background Graphic */
+        /* Ambient Background Graphics */
         .background-graphic {
             position: absolute;
             width: 300px;
@@ -70,12 +70,12 @@
         .container {
             text-align: center;
             z-index: 2;
-            max-width: 800px;
+            max-width: 900px;
         }
 
         /* Central Graphic Icon */
         .icon-container {
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             animation: pulse 3s ease-in-out infinite;
         }
 
@@ -92,59 +92,6 @@
             50% { transform: scale(1.05); filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.5)); }
         }
 
-        /* Heading and Hover Unravel Effect */
-        .heading {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            letter-spacing: -0.5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .unravel-wrapper {
-            cursor: pointer;
-            display-inline: block;
-            position: relative;
-            color: var(--accent-color);
-            transition: color 0.3s ease;
-        }
-
-        /* The magic text container */
-        .unravel-text {
-            display: inline-block;
-            max-width: 110px; /* Fits 'SEFC' initially */
-            white-space: nowrap;
-            overflow: hidden;
-            transition: max-width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-            vertical-align: bottom;
-        }
-
-        /* Target acronym letters specifically to make them pop initially if desired */
-        .unravel-text span.initial {
-            font-weight: 800;
-        }
-
-        /* On Hover: Expand the container to show full text */
-        .unravel-wrapper:hover .unravel-text {
-            max-width: 700px; /* Large enough to fit the full name */
-        }
-
-        .suffix {
-            color: var(--text-color);
-        }
-
-        /* Subtitle & Info */
-        .tagline {
-            color: var(--secondary-color);
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-            font-weight: 400;
-        }
-
         /* Status Badge */
         .badge {
             background-color: rgba(56, 189, 248, 0.1);
@@ -156,15 +103,82 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             display: inline-block;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Brand Typography Wrapper */
+        .brand-heading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
             margin-bottom: 2rem;
         }
 
-        /* Responsive Design */
-        @media (max-width: 600px) {
-            .heading { font-size: 1.8rem; }
-            .tagline { font-size: 1rem; }
-            .unravel-text { max-width: 80px; }
-            .unravel-wrapper:hover .unravel-text { max-width: 450px; }
+        /* The Interactive Unraveling Trigger */
+        .unravel-wrapper {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            color: var(--accent-color);
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            padding: 5px 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .unravel-wrapper:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Container that handles the horizontal expansion */
+        .unravel-text {
+            display: inline-block;
+            max-width: 120px; /* Perfectly bounds "SEFC" initially */
+            white-space: nowrap;
+            overflow: hidden;
+            transition: max-width 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+            vertical-align: bottom;
+            text-align: center;
+        }
+
+        /* Forces highlighted rendering for the core initials */
+        .unravel-text span.initial {
+            font-weight: 900;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+        }
+
+        /* Trigger state: expand when hovered OR clicked (via JS class) */
+        .unravel-wrapper:hover .unravel-text,
+        .unravel-wrapper.active .unravel-text {
+            max-width: 900px; /* Dynamically accommodates the full spelled name */
+        }
+
+        /* Sub-heading positioned beneath SEFC */
+        .sub-heading {
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--text-color);
+            letter-spacing: 1px;
+        }
+
+        /* Tagline */
+        .tagline {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            font-weight: 300;
+            margin-top: 1rem;
+        }
+
+        /* Responsive scaling adjustments */
+        @media (max-width: 768px) {
+            .unravel-wrapper { font-size: 2rem; }
+            .sub-heading { font-size: 1.5rem; }
+            .unravel-text { max-width: 85px; }
+            .unravel-wrapper:hover .unravel-text,
+            .unravel-wrapper.active .unravel-text { max-width: 550px; }
         }
     </style>
 </head>
@@ -184,18 +198,34 @@
 
         <div class="badge">Coming Soon</div>
 
-        <!-- The Interactive Unraveling Heading -->
-        <h1 class="heading">
-            <div class="unravel-wrapper">
+        <!-- Brand Heading Layout Setup Stacked Vertically -->
+        <div class="brand-heading">
+            <!-- SEFC Top interactive segment -->
+            <div class="unravel-wrapper" id="unravelComponent" title="Click or Hover to expand">
                 <div class="unravel-text">
-                    <span class="initial">S</span>wati <span class="initial">E</span>ducation <span class="initial">F</span>inancial <span class="initial">C</span>onsultancy
+                    <span class="initial">S</span>wati <span class="initial">E</span>ducation and <span class="initial">F</span>inancial <span class="initial">C</span>onsultancy
                 </div>
             </div>
-            <span class="suffix">- Digital Services</span>
-        </h1>
+            
+            <!-- Digital Services placed cleanly right underneath -->
+            <h2 class="sub-heading">Digital Services</h2>
+        </div>
 
-        <p class="tagline">We are crafting a brand new digital experience. Stay tuned!</p>
+        <p class="tagline">Our new platform is currently under construction. Stay tuned!</p>
     </div>
 
+    <script>
+        // Micro-interaction JavaScript to seamlessly handle touch/click behavior alongside CSS Hover
+        const component = document.getElementById('unravelComponent');
+        component.addEventListener('click', function(e) {
+            this.classList.toggle('active');
+            e.stopPropagation();
+        });
+        
+        // Collapse if user clicks anywhere else on the screen
+        document.addEventListener('click', function() {
+            component.classList.remove('active');
+        });
+    </script>
 </body>
 </html>
