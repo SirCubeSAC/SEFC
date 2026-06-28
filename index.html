@@ -3,273 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEFC - Digital Services | Coming Soon</title>
-    <style>
-        :root {
-            --bg-color: #0f172a;
-            --text-color: #f8fafc;
-            --accent-color: #38bdf8;
-            --secondary-color: #94a3b8;
-        }
+    
+    <!-- SEO Meta Tags -->
+    <title>Swati Education And Financial Consultancy | Online Cyber Services India</title>
+    <meta name="description" content="Swati Education and Financial Consultancy provides professional online training and digital cyber solutions across India. Learn share marketing, basic AI, and computer skills, or get fast, affordable government form fill-ups from home.">
+    <meta name="keywords" content="Swati Education, Financial Consultancy, cyber cafe online, government form fill up, share marketing classes, basic AI course, computer training India, fast online digital services">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags for Social Media Sharing -->
+    <meta property="og:title" content="Swati Education And Financial Consultancy">
+    <meta property="og:description" content="Professional online training and digital cyber solutions across India. Cheaper, faster, and hassle-free.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://maps.app.goo.gl/NUouiihnxmmG9euB6">
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-            padding: 20px;
-        }
-
-        /* Ambient Background Graphics */
-        .background-graphic {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
-            filter: blur(80px);
-            opacity: 0.2;
-            border-radius: 50%;
-            top: 20%;
-            left: 30%;
-            animation: float 8s ease-in-out infinite alternate;
-            z-index: 1;
-        }
-
-        .background-graphic-2 {
-            position: absolute;
-            width: 250px;
-            height: 250px;
-            background: linear-gradient(45deg, #ec4899, #38bdf8);
-            filter: blur(80px);
-            opacity: 0.15;
-            border-radius: 50%;
-            bottom: 20%;
-            right: 30%;
-            animation: float 6s ease-in-out infinite alternate-reverse;
-            z-index: 1;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(-30px) scale(1.1); }
-        }
-
-        /* Content Container */
-        .container {
-            text-align: center;
-            z-index: 2;
-            max-width: 1000px;
-            width: 100%;
-        }
-
-        /* Graphic Icon */
-        .icon-container {
-            margin-bottom: 1.5rem;
-            animation: pulse 3s ease-in-out infinite;
-        }
-
-        .icon-container svg {
-            width: 80px;
-            height: 80px;
-            fill: none;
-            stroke: var(--accent-color);
-            stroke-width: 1.5;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(56, 189, 248, 0)); }
-            50% { transform: scale(1.05); filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.5)); }
-        }
-
-        .badge {
-            background-color: rgba(56, 189, 248, 0.1);
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            color: var(--accent-color);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: inline-block;
-            margin-bottom: 2.5rem;
-        }
-
-        /* Brand Container Stacked Vertically */
-        .brand-heading {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 2rem;
-        }
-
-        /* Interactive Unravel Container */
-        .unravel-trigger {
-            cursor: pointer;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--accent-color);
-            padding: 10px 20px;
-            border-radius: 12px;
-            transition: background-color 0.3s ease;
-            white-space: nowrap;
-            user-select: none;
-        }
-
-        .unravel-trigger:hover {
-            background-color: rgba(255, 255, 255, 0.03);
-        }
-
-        /* Letter Wrapper Blocks */
-        .word-block {
-            display: inline-flex;
-            align-items: baseline;
-        }
-
-        .initial-letter {
-            font-weight: 900;
-            text-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
-        }
-
-        /* Hidden part of the words that slide open */
-        .hidden-text {
-            display: inline-block;
-            max-width: 0;
-            overflow: hidden;
-            white-space: pre;
-            opacity: 0;
-            font-size: 2.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            transition: max-width 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
-        }
-
-        /* Space fix between words when expanded */
-        .hidden-text.has-space {
-            padding-right: 0px;
-            transition: padding-right 0.6s;
-        }
-
-        /* Hover / Active Trigger States */
-        .unravel-trigger:hover .hidden-text,
-        .unravel-trigger.active .hidden-text {
-            opacity: 1;
-        }
-
-        /* Custom maximum widths for each word chunk to unravel perfectly */
-        .unravel-trigger:hover .w-1, .unravel-trigger.active .w-1 { max-width: 130px; padding-right: 15px; }
-        .unravel-trigger:hover .w-2, .unravel-trigger.active .w-2 { max-width: 420px; padding-right: 15px; }
-        .unravel-trigger:hover .w-3, .unravel-trigger.active .w-3 { max-width: 230px; padding-right: 15px; }
-        .unravel-trigger:hover .w-4, .unravel-trigger.active .w-4 { max-width: 320px; }
-
-        /* Digital Services Subtitle */
-        .sub-heading {
-            font-size: 2rem;
-            font-weight: 400;
-            color: var(--text-color);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .tagline {
-            color: var(--secondary-color);
-            font-size: 1.1rem;
-            font-weight: 300;
-            margin-top: 1rem;
-        }
-
-        /* Responsive Scaling for smaller screens */
-        @media (max-width: 900px) {
-            .unravel-trigger { font-size: 1.8rem; flex-wrap: wrap; justify-content: center; line-height: 1.4; }
-            .hidden-text { font-size: 1.6rem; }
-            .sub-heading { font-size: 1.4rem; }
-            
-            .unravel-trigger:hover .w-1, .unravel-trigger.active .w-1 { max-width: 80px; padding-right: 8px; }
-            .unravel-trigger:hover .w-2, .unravel-trigger.active .w-2 { max-width: 240px; padding-right: 8px; }
-            .unravel-trigger:hover .w-3, .unravel-trigger.active .w-3 { max-width: 130px; padding-right: 8px; }
-            .unravel-trigger:hover .w-4, .unravel-trigger.active .w-4 { max-width: 180px; }
-        }
-    </style>
+    <!-- Stylesheets & Fonts -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Background Graphics -->
-    <div class="background-graphic"></div>
-    <div class="background-graphic-2"></div>
+    <!-- Hero Section with Gradient + img/stock1.jpg Background -->
+    <header class="hero-section">
+        <div class="container hero-content">
+            <header class="brand-header">
+                <h1 class="main-title">Swati Education And Financial Consultancy</h1>
+                <span class="tagline">-Your trusted digital hub, now serving all of India.</span>
+            </header>
 
-    <div class="container">
-        <!-- Pulse Icon Graphic -->
-        <div class="icon-container">
-            <svg viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9s2.015-9 4.5-9m0 0a9.004 9.004 0 018.716 6.747M12 3a9.004 9.004 0 00-8.716 6.747M10.25 9.75l1.25 1.25 3.25-3.25" />
-            </svg>
-        </div>
+            <section class="overview-box">
+                <h2 class="section-title">Brief Overview</h2>
+                <p class="overview-text">
+                    Swati Education and Financial Consultancy provides professional online training and digital cyber solutions across India. We offer expert classes in share marketing, basic AI, and basic computer skills. We also securely handle all types of government and non-government online cyber work straight from your home. Our services are cheaper, faster, and completely hassle-free with no long lines. <a href="#" class="learn-more">learn more</a>
+                </p>
+            </section>
 
-        <div class="badge">Coming Soon</div>
-
-        <div class="brand-heading">
-            <!-- SEFC Interactive Text Group -->
-            <div class="unravel-trigger" id="unravelBox" title="Hover or Tap to expand">
-                
-                <!-- S -> Swati -->
-                <div class="word-block">
-                    <span class="initial-letter">S</span>
-                    <span class="hidden-text w-1 has-space">wati</span>
-                </div>
-
-                <!-- E -> Education and -->
-                <div class="word-block">
-                    <span class="initial-letter">E</span>
-                    <span class="hidden-text w-2 has-space">ducation and</span>
-                </div>
-
-                <!-- F -> Financial -->
-                <div class="word-block">
-                    <span class="initial-letter">F</span>
-                    <span class="hidden-text w-3 has-space">inancial</span>
-                </div>
-
-                <!-- C -> Consultancy -->
-                <div class="word-block">
-                    <span class="initial-letter">C</span>
-                    <span class="hidden-text w-4">onsultancy</span>
-                </div>
-
+            <div class="cta-wrapper">
+                <a href="services.html" class="services-btn">SERVICES</a>
             </div>
-            
-            <!-- Subtitle below the main acronym -->
-            <h2 class="sub-heading">Digital Services</h2>
         </div>
+    </header>
 
-        <p class="tagline">We are engineering a powerful new digital destination. Stay tuned!</p>
-    </div>
+    <!-- Map Section Pinning Your Exact Shop Location -->
+    <section class="location-section">
+        <div class="container">
+            <h2 class="map-title">Our Physical Location</h2>
+            <p class="map-subtitle">Stop by our verified local branch or find us on Google Maps</p>
+            <div class="map-container">
+                <!-- Embedded Google Map using exact coordinates from your link to ensure accuracy -->
+                 
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3673.7252891816674!2d88.48962637298776!3d22.96034213328599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f8bfe5fcf75033%3A0xa29a1cb1a3ba123!2sSwati%20Education%20And%20Financial%20Consultancy!5e0!3m2!1sen!2sin!4v1782631073477!5m2!1sen!2sin"
+                    width="100%" 
+                    height="450" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+            <div class="map-link-wrapper">
+                <a href="https://maps.app.goo.gl/NUouiihnxmmG9euB6" target="_blank" rel="noopener" class="direct-map-link">Open directly in Google Maps</a>
+            </div>
+        </div>
+    </section>
 
-    <script>
-        // Toggle active status for mobile screen tap support
-        const box = document.getElementById('unravelBox');
-        box.addEventListener('click', function(e) {
-            this.classList.toggle('active');
-            e.stopPropagation();
-        });
-        
-        document.addEventListener('click', function() {
-            box.classList.remove('active');
-        });
-    </script>
 </body>
 </html>
