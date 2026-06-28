@@ -66,14 +66,15 @@
             100% { transform: translateY(-30px) scale(1.1); }
         }
 
-        /* Main Content Container */
+        /* Content Container */
         .container {
             text-align: center;
             z-index: 2;
-            max-width: 900px;
+            max-width: 1000px;
+            width: 100%;
         }
 
-        /* Central Graphic Icon */
+        /* Graphic Icon */
         .icon-container {
             margin-bottom: 1.5rem;
             animation: pulse 3s ease-in-out infinite;
@@ -92,7 +93,6 @@
             50% { transform: scale(1.05); filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.5)); }
         }
 
-        /* Status Badge */
         .badge {
             background-color: rgba(56, 189, 248, 0.1);
             border: 1px solid rgba(56, 189, 248, 0.2);
@@ -106,65 +106,86 @@
             margin-bottom: 2.5rem;
         }
 
-        /* Brand Typography Wrapper */
+        /* Brand Container Stacked Vertically */
         .brand-heading {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
             margin-bottom: 2rem;
         }
 
-        /* The Interactive Unraveling Trigger */
-        .unravel-wrapper {
+        /* Interactive Unravel Container */
+        .unravel-trigger {
             cursor: pointer;
-            display: inline-block;
-            position: relative;
-            color: var(--accent-color);
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
             font-size: 3rem;
             font-weight: 800;
-            letter-spacing: -1px;
-            padding: 5px 15px;
-            border-radius: 8px;
+            color: var(--accent-color);
+            padding: 10px 20px;
+            border-radius: 12px;
             transition: background-color 0.3s ease;
+            white-space: nowrap;
+            user-select: none;
         }
 
-        .unravel-wrapper:hover {
+        .unravel-trigger:hover {
             background-color: rgba(255, 255, 255, 0.03);
         }
 
-        /* Container that handles the horizontal expansion */
-        .unravel-text {
-            display: inline-block;
-            max-width: 120px; /* Perfectly bounds "SEFC" initially */
-            white-space: nowrap;
-            overflow: hidden;
-            transition: max-width 0.7s cubic-bezier(0.25, 1, 0.5, 1);
-            vertical-align: bottom;
-            text-align: center;
+        /* Letter Wrapper Blocks */
+        .word-block {
+            display: inline-flex;
+            align-items: baseline;
         }
 
-        /* Forces highlighted rendering for the core initials */
-        .unravel-text span.initial {
+        .initial-letter {
             font-weight: 900;
-            text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+            text-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
         }
 
-        /* Trigger state: expand when hovered OR clicked (via JS class) */
-        .unravel-wrapper:hover .unravel-text,
-        .unravel-wrapper.active .unravel-text {
-            max-width: 900px; /* Dynamically accommodates the full spelled name */
+        /* Hidden part of the words that slide open */
+        .hidden-text {
+            display: inline-block;
+            max-width: 0;
+            overflow: hidden;
+            white-space: pre;
+            opacity: 0;
+            font-size: 2.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: max-width 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
         }
 
-        /* Sub-heading positioned beneath SEFC */
+        /* Space fix between words when expanded */
+        .hidden-text.has-space {
+            padding-right: 0px;
+            transition: padding-right 0.6s;
+        }
+
+        /* Hover / Active Trigger States */
+        .unravel-trigger:hover .hidden-text,
+        .unravel-trigger.active .hidden-text {
+            opacity: 1;
+        }
+
+        /* Custom maximum widths for each word chunk to unravel perfectly */
+        .unravel-trigger:hover .w-1, .unravel-trigger.active .w-1 { max-width: 130px; padding-right: 15px; }
+        .unravel-trigger:hover .w-2, .unravel-trigger.active .w-2 { max-width: 420px; padding-right: 15px; }
+        .unravel-trigger:hover .w-3, .unravel-trigger.active .w-3 { max-width: 230px; padding-right: 15px; }
+        .unravel-trigger:hover .w-4, .unravel-trigger.active .w-4 { max-width: 320px; }
+
+        /* Digital Services Subtitle */
         .sub-heading {
             font-size: 2rem;
             font-weight: 400;
             color: var(--text-color);
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        /* Tagline */
         .tagline {
             color: var(--secondary-color);
             font-size: 1.1rem;
@@ -172,24 +193,27 @@
             margin-top: 1rem;
         }
 
-        /* Responsive scaling adjustments */
-        @media (max-width: 768px) {
-            .unravel-wrapper { font-size: 2rem; }
-            .sub-heading { font-size: 1.5rem; }
-            .unravel-text { max-width: 85px; }
-            .unravel-wrapper:hover .unravel-text,
-            .unravel-wrapper.active .unravel-text { max-width: 550px; }
+        /* Responsive Scaling for smaller screens */
+        @media (max-width: 900px) {
+            .unravel-trigger { font-size: 1.8rem; flex-wrap: wrap; justify-content: center; line-height: 1.4; }
+            .hidden-text { font-size: 1.6rem; }
+            .sub-heading { font-size: 1.4rem; }
+            
+            .unravel-trigger:hover .w-1, .unravel-trigger.active .w-1 { max-width: 80px; padding-right: 8px; }
+            .unravel-trigger:hover .w-2, .unravel-trigger.active .w-2 { max-width: 240px; padding-right: 8px; }
+            .unravel-trigger:hover .w-3, .unravel-trigger.active .w-3 { max-width: 130px; padding-right: 8px; }
+            .unravel-trigger:hover .w-4, .unravel-trigger.active .w-4 { max-width: 180px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Ambient Graphics -->
+    <!-- Background Graphics -->
     <div class="background-graphic"></div>
     <div class="background-graphic-2"></div>
 
     <div class="container">
-        <!-- Modern Tech Graphic Icon -->
+        <!-- Pulse Icon Graphic -->
         <div class="icon-container">
             <svg viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9s2.015-9 4.5-9m0 0a9.004 9.004 0 018.716 6.747M12 3a9.004 9.004 0 00-8.716 6.747M10.25 9.75l1.25 1.25 3.25-3.25" />
@@ -198,33 +222,53 @@
 
         <div class="badge">Coming Soon</div>
 
-        <!-- Brand Heading Layout Setup Stacked Vertically -->
         <div class="brand-heading">
-            <!-- SEFC Top interactive segment -->
-            <div class="unravel-wrapper" id="unravelComponent" title="Click or Hover to expand">
-                <div class="unravel-text">
-                    <span class="initial">S</span>wati <span class="initial">E</span>ducation and <span class="initial">F</span>inancial <span class="initial">C</span>onsultancy
+            <!-- SEFC Interactive Text Group -->
+            <div class="unravel-trigger" id="unravelBox" title="Hover or Tap to expand">
+                
+                <!-- S -> Swati -->
+                <div class="word-block">
+                    <span class="initial-letter">S</span>
+                    <span class="hidden-text w-1 has-space">wati</span>
                 </div>
+
+                <!-- E -> Education and -->
+                <div class="word-block">
+                    <span class="initial-letter">E</span>
+                    <span class="hidden-text w-2 has-space">ducation and</span>
+                </div>
+
+                <!-- F -> Financial -->
+                <div class="word-block">
+                    <span class="initial-letter">F</span>
+                    <span class="hidden-text w-3 has-space">inancial</span>
+                </div>
+
+                <!-- C -> Consultancy -->
+                <div class="word-block">
+                    <span class="initial-letter">C</span>
+                    <span class="hidden-text w-4">onsultancy</span>
+                </div>
+
             </div>
             
-            <!-- Digital Services placed cleanly right underneath -->
+            <!-- Subtitle below the main acronym -->
             <h2 class="sub-heading">Digital Services</h2>
         </div>
 
-        <p class="tagline">Our new platform is currently under construction. Stay tuned!</p>
+        <p class="tagline">We are engineering a powerful new digital destination. Stay tuned!</p>
     </div>
 
     <script>
-        // Micro-interaction JavaScript to seamlessly handle touch/click behavior alongside CSS Hover
-        const component = document.getElementById('unravelComponent');
-        component.addEventListener('click', function(e) {
+        // Toggle active status for mobile screen tap support
+        const box = document.getElementById('unravelBox');
+        box.addEventListener('click', function(e) {
             this.classList.toggle('active');
             e.stopPropagation();
         });
         
-        // Collapse if user clicks anywhere else on the screen
         document.addEventListener('click', function() {
-            component.classList.remove('active');
+            box.classList.remove('active');
         });
     </script>
 </body>
