@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sefc.ext.io/
+Sitemap: https://sefc.ext.io
