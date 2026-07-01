@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://swatiedu.ext.io
+Sitemap: https://swatiedu.ext.io/
